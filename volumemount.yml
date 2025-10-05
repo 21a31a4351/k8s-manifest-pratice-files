@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mountpod
+spec:
+  volumes:
+    - name: initpod
+      emptyDir: {}        
+  initContainers:
+    - name: firstinit
+      image: busybox
+      command:
+        - sh
+        - -c
+        - sleep 1m
+      volumeMounts:
+        - name: initpod
+          mountPath: /usr/share/nginx/html
+  containers:
+    - name: secondinit
+      image: alpine
+      command:
+        - sh
+        - -c
+        - sleep 1m
+      volumeMounts:
+        - name: initpod
+          mountPath: /usr/share/nginx/html
