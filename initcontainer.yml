@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: initcontainerpod
+spec:
+  initContainers:
+    - name: initconatiner
+      image: busybox
+      command: ["sh", "-c"," sleep 1d"]
+      ports:
+        - containerPort: 8080
+          protocol: TCP
+    - name: secondinitcontainer
+      image: alpine
+      command: ["sh", "-c"," sleep 1d"]
+      ports: 
+        - containerPort: 9090
+          protocol: TCP
+  containers:
+    - name: maincontainer
+      image: nginx
+      ports:
+        - containerPort: 80
+          protocol: TCP
