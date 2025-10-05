@@ -6,13 +6,13 @@ spec:
   initContainers:
     - name: initconatiner
       image: busybox
-      command: ["sh", "-c"," sleep 1d"]
+      command: ["sh", "-c"," sleep 1m"]
       ports:
         - containerPort: 8080
           protocol: TCP
     - name: secondinitcontainer
       image: alpine
-      command: ["sh", "-c"," sleep 1d"]
+      command: ["sh", "-c"," sleep 1m"]
       ports: 
         - containerPort: 9090
           protocol: TCP
